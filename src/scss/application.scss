@@ -1,3 +1,7 @@
 @import 'settings';
+@import 'compass/css3';
+@import 'compass/functions';
+@import 'compass/utilities';
+@import 'compass/typography';
 @import 'foundation';
 @include foundation-everything;

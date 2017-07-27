@@ -8,7 +8,10 @@ var pump = require('pump');
 gulp.task('styles', function () {
   gulp.src('src/scss/application.scss')
     .pipe(sass({
-      includePaths: 'node_modules/foundation-sites/scss',
+      includePaths: [
+       'node_modules/foundation-sites/scss',
+       'node_modules/compass-mixins/lib'
+      ],
       outputStyle: 'compressed'
     }).on('error', sass.logError))
     .pipe(gulp.dest('./public/css/'))
@@ -37,14 +40,4 @@ gulp.task('compress', function(cb) {
     ],
     cb
   );
-  // gulp.src('public/javascript/*.js')
-  //   .pipe(uglify({
-  //       ext:{
-  //           src:'-debug.js',
-  //           min:'.js'
-  //       },
-  //       exclude: ['tasks'],
-  //       ignoreFiles: ['-min.js']
-  //   }))
-  //   .pipe(gulp.dest('./public/javascript/'))
 });
