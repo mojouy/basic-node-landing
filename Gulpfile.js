@@ -30,6 +30,7 @@ gulp.task('js', function () {
 gulp.task('default', function () {
   gulp.watch('src/scss/**/*.scss', ['styles'])
   gulp.watch('src/javascript/**/*.js', ['js'])
+  gulp.watch('src/**/*.html', ['copy'])
 });
 
 gulp.task('compress', function(cb) {
@@ -40,4 +41,9 @@ gulp.task('compress', function(cb) {
     ],
     cb
   );
+});
+
+gulp.task('copy', function () {
+  gulp.src('src/index.html')
+    .pipe(gulp.dest('./public'));
 });
