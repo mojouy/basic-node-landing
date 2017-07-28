@@ -5,4 +5,3 @@ require('browsernizr/test/css/backgroundsizecover');
 window.Modernizr = require('browsernizr');
 
 $(document).foundation();
-console.log("ssasdassssss");

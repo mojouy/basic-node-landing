@@ -37,5 +37,12 @@
     "scss",
     "express",
     "heroku"
-  ]
+  ],
+  "devDependencies": {
+    "gulp-jshint": "^2.0.4",
+    "gulp-sass-lint": "^1.3.2",
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.2.1",
+    "sass-lint": "^1.10.2"
+  }
 }

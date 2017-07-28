@@ -1,9 +1,11 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var browserify = require('gulp-browserify');
-var uglify = require('gulp-uglify');
-var buffer = require('gulp-buffer');
-var pump = require('pump');
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    browserify = require('gulp-browserify'),
+    uglify = require('gulp-uglify'),
+    buffer = require('gulp-buffer'),
+    pump = require('pump'),
+    sassLint = require('gulp-sass-lint'),
+    jshint = require('gulp-jshint');
 
 gulp.task('styles', function () {
   gulp.src('src/scss/application.scss')
@@ -31,6 +33,16 @@ gulp.task('default', function () {
   gulp.watch('src/scss/**/*.scss', ['styles'])
   gulp.watch('src/javascript/**/*.js', ['js'])
   gulp.watch('src/**/*.html', ['copy'])
+
+  gulp.src('src/**/*.s+(a|c)ss')
+    .pipe(sassLint())
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
+
+  gulp.src('src/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('fail'))
 });
 
 gulp.task('compress', function(cb) {
@@ -46,4 +58,11 @@ gulp.task('compress', function(cb) {
 gulp.task('copy', function () {
   gulp.src('src/index.html')
     .pipe(gulp.dest('./public'));
+});
+
+gulp.task('lint', function () {
+  gulp.src('src/**/*.s+(a|c)ss')
+    .pipe(sassLint())
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
 });
