@@ -1,0 +1,7 @@
+{
+  "name": "Basic Node-sass-foundation",
+  "description": "A barebones Node.js app using sass, foundation and Express",
+  "repository": "https://github.com/mojouy/basic-node-landing.git",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["node", "express", "static", "sass", "foundation", "compass"]
+}
