@@ -29,7 +29,32 @@ gulp.task('js', function () {
     .pipe(gulp.dest('./public/javascript/'))
 });
 
-gulp.task('default', function () {
+gulp.task('default', ['build', 'watch']);
+
+gulp.task('build', function () {
+  gulp.src('src/javascript/application.js')
+    .pipe(browserify({
+      insertGlobals: true
+    }))
+    .pipe(buffer())
+    .pipe(uglify())
+    .pipe(gulp.dest('./public/javascript/'))
+
+  gulp.src('src/scss/application.scss')
+    .pipe(sass({
+      includePaths: [
+       'node_modules/foundation-sites/scss',
+       'node_modules/compass-mixins/lib'
+      ],
+      outputStyle: 'compressed'
+    }).on('error', sass.logError))
+    .pipe(gulp.dest('./public/css/'))
+
+  gulp.src('src/index.html')
+    .pipe(gulp.dest('./public'));
+});
+
+gulp.task('watch', function () {
   gulp.watch('src/scss/**/*.scss', ['styles'])
   gulp.watch('src/javascript/**/*.js', ['js'])
   gulp.watch('src/**/*.html', ['copy'])
@@ -47,9 +72,9 @@ gulp.task('default', function () {
 
 gulp.task('compress', function(cb) {
   pump([
-        gulp.src('public/javascript/*.js'),
-        uglify(),
-        gulp.dest('./public/javascript/')
+      gulp.src('public/javascript/*.js'),
+      uglify(),
+      gulp.dest('./public/javascript/')
     ],
     cb
   );
