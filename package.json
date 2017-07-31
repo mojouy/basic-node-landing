@@ -1,5 +1,5 @@
 {
-  "name": "Landing Template",
+  "name": "landing_template",
   "version": "1.0.0",
   "description": "landing_template",
   "main": "index.js",
@@ -40,6 +40,7 @@
     "heroku"
   ],
   "devDependencies": {
+    "check-dependencies": "^1.0.1",
     "gulp-jshint": "^2.0.4",
     "gulp-sass-lint": "^1.3.2",
     "jshint": "^2.9.5",
