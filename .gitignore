@@ -57,8 +57,9 @@ typings/
 # dotenv environment variables file
 .env
 
-public/css/application.css
-public/javascript/application.js
-public/index.html
+public/css/*.css
+public/javascript/*.js
+public/*.html
+public/images/*
 
 .DS_Store
